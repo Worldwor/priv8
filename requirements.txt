@@ -1,0 +1,6 @@
+PySocks
+requests
+dnspython
+faker
+pyfiglet
+art

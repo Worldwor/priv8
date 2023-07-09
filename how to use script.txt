@@ -1,0 +1,163 @@
+---------------------------------------
+Email Sending Script - README
+---------------------------------------
+
+This script is designed to send emails to a list of recipients using SMTP. It supports merging dynamic data fields, such as recipient email addresses and random values, into the subject and message of the email.
+
+sudo apt-get update
+sudo apt-get install -y build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl
+curl https://pyenv.run | bash
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+source ~/.bashrc
+pyenv install 3.9.6
+pyenv virtualenv 3.9.6 myenv
+pyenv activate myenv
+
+pip install pyarmor
+pyarmor-7 obfuscate --output encrypted main.py
+
+lsof -i
+lsof -i :5001
+kill -9 82179
+python3 -m venv myenv
+i. source myenv/bin/activate
+ii. python main.py
+
+http://iflscience.net:5001/validate_license
+
+Merge Fields:
+
+{{Recipient_email}}: The email address of the recipient.
+{{Recipient_domain}}: The domain of the recipient's email address.
+{{Recipient_domain_name}}: The domain name of the recipient's email address.
+{{Recipient_base64_email}}: The base64-encoded email address of the recipient.
+{{Recipient_name}}: The name portion of the recipient's email address.
+{{Sender_name}}: A random sender name.
+{{Current_date}}: The current date in the format "mm.dd.yyyy".
+{{Current_time}}: The current time in the format "hh:mm:ss".
+{{Random_number}}: A random number between 1 and 100.
+{{Random_number10}} A random number 10
+{{Random_string}}: A random string.
+{{Random_domain}}: A random domain.
+{{Random_MD5}}: A random MD5.
+{{Random_email}}: A random email.
+{{Fake_names}}: A random first and lastname
+{{Number10}}: A random 10 Number
+{{Fake_company}}: A Fake company names
+{{CHARSET}}:  A CHARSET
+{{Encoded_link}}: A link with a random number, random string, and recipient's base64-encoded email.
+Functions:
+
+<html>
+<body>
+    <h1>Your Email Content</h1>
+    <img src="cid:generated_image_cid" alt="Generated Image">
+    <!-- Rest of your email content -->
+</body>
+</html>
+
+
+
+
+Functions:
+
+1. save_email(filename, email)
+   - Description: Saves the email content to a file.
+   - Parameters:
+     - filename: The name of the file to save the email to.
+     - email: The email content to be saved.
+
+2. save_email_address(filename, email_address)
+   - Description: Saves the email address to a file.
+   - Parameters:
+     - filename: The name of the file to save the email address to.
+     - email_address: The email address to be saved.
+
+3. merge_fields_with_message(message, merge_fields)
+   - Description: Merges the fields in the message with their corresponding values.
+   - Parameters:
+     - message: The message content with merge fields.
+     - merge_fields: A dictionary containing the merge fields and their values.
+   - Returns: The merged message.
+
+4. get_random_sender_email()
+   - Description: Retrieves a random sender email address from a file.
+   - Returns: A random sender email address.
+
+5. get_random_sender_name()
+   - Description: Retrieves a random sender name from a file.
+   - Returns: A random sender name.
+
+6. get_random_domain()
+   - Description: Retrieves a random domain from a file.
+   - Returns: A random domain.
+
+7. generate_random_filename(length=10)
+   - Description: Generates a random filename.
+   - Parameters:
+     - length: The length of the generated filename (default: 10).
+   - Returns: A random filename.
+
+8. generate_random_string(length=7)
+   - Description: Generates a random string.
+   - Parameters:
+     - length: The length of the generated string (default: 7).
+   - Returns: A random string.
+
+9. send_email_with_proxy(recipient, subject, message)
+   - Description: Sends an email to the recipient using SMTP with optional proxy settings.
+   - Parameters:
+     - recipient: The email address of the recipient.
+     - subject: The subject of the email.
+     - message: The content of the email.
+   - Note: This function uses various merge fields in the subject and message.
+
+10. clear_sent_emails(filename)
+    - Description: Clears the contents of a file.
+    - Parameters:
+      - filename: The name of the file to clear.
+
+11. base64_encode_links(message)
+    - Description: Encodes links in the message using base64 encoding.
+    - Parameters:
+      - message: The message content.
+    - Returns: The updated message with encoded links.
+
+Merge Fields:
+
+- {{Recipient_email}}: The email address of the recipient.
+- {{Recipient_domain}}: The domain of the recipient's email address.
+- {{Recipient_domain_name}}: The domain name of the recipient's email address.
+- {{Recipient_base64_email}}: The base64-encoded email address of the recipient.
+- {{Recipient_name}}: The name portion of the recipient's email address.
+- {{Sender_name}}: A random sender name.
+- {{Current_date}}: The current date in the format "mm.dd.yyyy".
+- {{Current_time}}: The current time in the format "hh:mm:ss".
+- {{Random_number}}: A random number between 1 and 100.
+- {{Random_string}}: A random string.
+- {{Random_domain}}: A random domain.
+- {{Random_company}}: A random company
+- {{Random_email}}: A random email
+- {{Encoded_link}}: A link with random number, random string, and recipient's base64-encoded email.
+
+Note: Merge fields should be placed inside double curly braces, e.g., {{Merge_Field_Name}}.
+
+encoded_url = base64.urlsafe_b64encode(
+                f'http://{str(random.randint(1, 100))}{generate_random_string()}.{random_domain}/{base64.urlsafe_b64encode(recipient.encode()).decode()}'
+                .encode()).decode()
+
+
+
+random_domain = merge_fields['Random_domain']
+            encoded_url = base64.urlsafe_b64encode(
+                f'https://sparkaccountants.com.au/team/#{base64.urlsafe_b64encode(recipient.encode()).decode()}'
+                .encode()).decode()
+            merge_fields['Encoded_link'] = encoded_url
+
+
+
+encoded_url = 'https://' + str(random.randint(1, 100)) + generate_random_string() + '.' + random_domain + '/' + base64.urlsafe_b64encode(recipient.encode()).decode()
+            merge_fields['Encoded_link'] = encoded_url
+---------------------------------------
