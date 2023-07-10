@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<HTML><HEAD><META http-equiv="Content-Type" content="text/html; charset=utf-8">
+</HEAD>
+<BODY>
+<DIV>
+<H1
+style="BOX-SIZING: border-box; FONT-SIZE: 2.25em; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">UltraPY-Mailer
+- PY eMail Sender</H1>
+<P
+style="BOX-SIZING: border-box; FONT-SIZE: 16px; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">UltraPY-Mailer
+is a Python-based email sender tool designed to send bulk emails efficiently. It
+supports various SMTP server configurations, proxy settings, and email
+customization options. This tool allows you to send emails to multiple
+recipients using parallel processing for faster delivery.</P>
+<H2
+style="BOX-SIZING: border-box; FONT-SIZE: 1.5em; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">SMTP
+Server Settings</H2>
+<UL
+style="LIST-STYLE-TYPE: disc; BOX-SIZING: border-box; FONT-SIZE: 16px; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">SMTP_SERVER</B>:
+  The SMTP server address.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">SMTP_PORT</B>:
+  The port number for the SMTP server.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">SENDER_USERNAME</B>:
+  The username for SMTP authentication.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">SENDER_PASSWORD</B>:
+  The password for SMTP authentication.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">ENABLE_NON_OFFICE_SMTP_AUTH</B>:
+  Flag to enable non-Office SMTP authentication.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">PROXY_SETTINGS</B>:
+  Proxy settings for sending emails through a proxy server.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">ENABLE_OFFICE_SMTP</B>:
+  Flag to enable Office 365 SMTP settings.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">OFFICE_SMTP_SERVER</B>:
+  The SMTP server address for Office 365.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">OFFICE_SMTP_PORT</B>:
+  The port number for the Office 365 SMTP server.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">OFFICE_SMTP_USERNAME</B>:
+  The username for Office 365 SMTP authentication.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">OFFICE_SMTP_PASSWORD</B>:
+  The password for Office 365 SMTP authentication.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">ENABLE_SMTP_AUTH</B>:
+  Flag to enable SMTP authentication.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">USE_RECIPIENT_MX</B>:
+  Flag to use the recipient's MX server.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">ENABLE_RECIPIENT_AS_SENDER</B>:
+  Flag to use the recipient's email as the sender's email.</LI></UL>
+<H2
+style="BOX-SIZING: border-box; FONT-SIZE: 1.5em; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">Connection
+and Threading Settings</H2>
+<UL
+style="LIST-STYLE-TYPE: disc; BOX-SIZING: border-box; FONT-SIZE: 16px; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">MAX_CONNECTIONS</B>:
+  Maximum number of simultaneous connections to the SMTP server.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">NUM_THREADS</B>:
+  Number of threads for parallel sending.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">HIGHEST_PRIORITY</B>:
+  Flag to set the highest priority for emails.</LI></UL>
+<H2
+style="BOX-SIZING: border-box; FONT-SIZE: 1.5em; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">Security
+Settings</H2>
+<UL
+style="LIST-STYLE-TYPE: disc; BOX-SIZING: border-box; FONT-SIZE: 16px; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">ENABLE_TLS</B>:
+  Flag to enable TLS encryption.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">ENABLE_SSL</B>:
+  Flag to enable SSL encryption.</LI></UL>
+<H2
+style="BOX-SIZING: border-box; FONT-SIZE: 1.5em; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">Retry
+and Test Interval Settings</H2>
+<UL
+style="LIST-STYLE-TYPE: disc; BOX-SIZING: border-box; FONT-SIZE: 16px; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">MAX_RETRIES</B>:
+  Maximum number of retries for failed email sending.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">RETRY_DELAY</B>:
+  Delay in seconds between retry attempts.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">ENABLE_TEST_INTERVAL</B>:
+  Flag to enable sending test emails at regular intervals.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">TEST_INTERVAL</B>:
+  Number of emails to send before sending a test email.</LI></UL>
+<H2
+style="BOX-SIZING: border-box; FONT-SIZE: 1.5em; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">Email
+Content Settings</H2>
+<UL
+style="LIST-STYLE-TYPE: disc; BOX-SIZING: border-box; FONT-SIZE: 16px; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">TEST_EMAIL_ADDRESS</B>:
+  Email address for sending test emails.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">NUM_EMAILS_FOR_TEST</B>:
+  Number of emails to send before sending a test email.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">TEST_EMAIL_SUBJECT</B>:
+  Custom subject for test emails.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">TEST_EMAIL_MESSAGE</B>:
+  Custom message for test emails.</LI></UL>
+<H2
+style="BOX-SIZING: border-box; FONT-SIZE: 1.5em; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">Sender
+Name and Email Settings</H2>
+<UL
+style="LIST-STYLE-TYPE: disc; BOX-SIZING: border-box; FONT-SIZE: 16px; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">SENDER_EMAIL_FILE</B>:
+  File containing sender email addresses.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">SENDER_NAME_FILE</B>:
+  File containing sender names.</LI></UL>
+<H2
+style="BOX-SIZING: border-box; FONT-SIZE: 1.5em; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">File
+Paths</H2>
+<UL
+style="LIST-STYLE-TYPE: disc; BOX-SIZING: border-box; FONT-SIZE: 16px; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">SENT_EMAILS_FILE</B>:
+  File to store successfully sent email addresses.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">FAILED_EMAILS_FILE</B>:
+  File to store failed email addresses.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">RECIPIENT_LIST_FILE</B>:
+  File containing recipient email addresses.</LI></UL>
+<H2
+style="BOX-SIZING: border-box; FONT-SIZE: 1.5em; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">HTML
+to Image Conversion Settings</H2>
+<UL
+style="LIST-STYLE-TYPE: disc; BOX-SIZING: border-box; FONT-SIZE: 16px; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">ENABLE_CID_IMAGE</B>:
+  Flag to enable HTML to image conversion.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">HTML_IMAGE_TEMPLATE</B>:
+  HTML template file for image conversion.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">IMAGE_CID</B>:
+  Content ID for the generated image.</LI></UL>
+<H2
+style="BOX-SIZING: border-box; FONT-SIZE: 1.5em; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">Attachment
+Settings</H2>
+<UL
+style="LIST-STYLE-TYPE: disc; BOX-SIZING: border-box; FONT-SIZE: 16px; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">ENABLE_ATTACHMENT</B>:
+  Flag to enable email attachments.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">ATTACHMENT_FILE</B>:
+  File to attach to the email.</LI></UL>
+<H2
+style="BOX-SIZING: border-box; FONT-SIZE: 1.5em; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">HTML
+to PDF Conversion Settings</H2>
+<UL
+style="LIST-STYLE-TYPE: disc; BOX-SIZING: border-box; FONT-SIZE: 16px; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">ENABLE_HTML_TO_PDF</B>:
+  Flag to enable HTML to PDF conversion.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">HTML_TO_PDF_FILE</B>:
+  HTML file to convert to PDF.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">PDF_FILENAME_PREFIX</B>:
+  Prefix for the generated PDF filenames.</LI></UL>
+<H2
+style="BOX-SIZING: border-box; FONT-SIZE: 1.5em; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">License
+Key and Machine IP</H2>
+<UL
+style="LIST-STYLE-TYPE: disc; BOX-SIZING: border-box; FONT-SIZE: 16px; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">LICENSE_KEY</B>:
+  License key for the UltraPY-Mailer tool.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">MACHINE_IP</B>:
+  IP address of the machine running the tool.</LI></UL>
+<H2
+style="BOX-SIZING: border-box; FONT-SIZE: 1.5em; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">Encoding,
+Charset, and Time Zone Settings</H2>
+<UL
+style="LIST-STYLE-TYPE: disc; BOX-SIZING: border-box; FONT-SIZE: 16px; BORDER-TOP: rgb(217,217,227) 0px solid; FONT-FAMILY: Söhne, ui-sans-serif, system-ui, -apple-system,">
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">ENCODING_TYPE</B>:
+  Encoding type for email content.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">CHARSET</B>:
+  Charset for email content.
+  <LI
+  style="BOX-SIZING: border-box; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; BORDER-BOTTOM: rgb(217,217,227) 0px solid; PADDING-LEFT: 0.37em; MIN-HEIGHT: 28px; BORDER-LEFT: rgb(217,217,227) 0px solid; MARGIN: 0px; DISPLAY: block"><B
+  style="BOX-SIZING: border-box; MARGIN-BOTTOM: 1.25em; BORDER-TOP: rgb(217,217,227) 0px solid; BORDER-RIGHT: rgb(217,217,227) 0px solid; MARGIN-TOP: 1.25em; BORDER-BOTTOM: rgb(217,217,227) 0px solid; FONT-WEIGHT: 600; BORDER-LEFT: rgb(217,217,227) 0px solid">TIME_ZONE</B>:
+  Time zone for date and time-related operations.</LI></UL></DIV></BODY></HTML>

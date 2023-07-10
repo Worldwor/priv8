@@ -1,6 +1,14 @@
 PySocks
+uuid
+datetime
 requests
 dnspython
-faker
-pyfiglet
+Pillow
 art
+pyfiglet
+pytz
+imgkit
+email_validator
+faker
+weasyprint
+pdfkit
