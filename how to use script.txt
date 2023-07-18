@@ -1,8 +1,29 @@
 ---------------------------------------
 Email Sending Script - README
----------------------------------------
+----------------------
+
+-----------------
 
 This script is designed to send emails to a list of recipients using SMTP. It supports merging dynamic data fields, such as recipient email addresses and random values, into the subject and message of the email.
+
+
+
+*************************************
+Centos Installation.
+
+sudo yum update
+sudo yum install python3-devel
+sudo yum install openssl-devel
+sudo yum install libffi-devel
+sudo yum install wkhtmltopdf
+python3 -m venv myenv
+source myenv/bin/activate
+
+pip install -r requirements.txt
+
+pip install --upgrade pip
+
+*************************************
 
 sudo apt-get update
 sudo apt-get install -y build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl
@@ -15,8 +36,20 @@ pyenv install 3.9.6
 pyenv virtualenv 3.9.6 myenv
 pyenv activate myenv
 
+sudo apt-get install libpango1.0-0     pango error incase
+sudo apt-get install wkhtmltopdf
+
+sudo apt-get update
+sudo apt-get install wkhtmltopdf
+
+
+apt install wkhtmltopdf
+
 pip install pyarmor
 pyarmor-7 obfuscate --output encrypted main.py
+pyarmor obfuscate --output encrypted main.py
+~/.local/bin/pyarmor gen --output encrypted main.py
+
 
 lsof -i
 lsof -i :5001
@@ -26,6 +59,7 @@ i. source myenv/bin/activate
 ii. python main.py
 
 http://iflscience.net:5001/validate_license
+http://ultrapy.com:5001/validate_license
 
 Merge Fields:
 

@@ -1,15 +1,15 @@
 from threading import Semaphore
 
 # SMTP server settings
-SMTP_SERVER = 'mail.remorquesmaximum.com'
+SMTP_SERVER = '122.201.64.137'
 SMTP_PORT = 587
-SENDER_USERNAME = 'info@chirobenoitlambert.ca'
-SENDER_PASSWORD = 'M?Nq!o08,YPV'
-ENABLE_NON_OFFICE_SMTP_AUTH = True  # Add this flag for non-Office SMTP authentication
+SENDER_USERNAME = 'tntengin'
+SENDER_PASSWORD = 'f0x@zdsFoXhsu#x'
+ENABLE_NON_OFFICE_SMTP_AUTH = True
 
 # Proxy settings
-ENABLE_PROXY = True
-PROXY_PROTOCOL = 'socks5'  # or 'http 0r https/socks5 or socks4
+ENABLE_PROXY = False
+PROXY_PROTOCOL = 'socks5'
 PROXY_HOST = '169.239.205.61'
 PROXY_PORT = 30494
 PROXY_USERNAME = 'paulmikare3055'
@@ -36,13 +36,13 @@ MAX_CONNECTIONS = 5
 connection_semaphore = Semaphore(MAX_CONNECTIONS)
 
 # Set the number of threads for parallel sending
-NUM_THREADS = 1
+NUM_THREADS = 50
 
 # Highest priority flag
 HIGHEST_PRIORITY = False
 
 # TLS and SSL settings
-ENABLE_TLS = False
+ENABLE_TLS = True
 ENABLE_SSL = False
 
 # Retry settings
@@ -54,14 +54,14 @@ ENABLE_TEST_INTERVAL = True
 TEST_INTERVAL = 1000
 
 # Reply-to email settings
-ENABLE_REPLY_TO = False
-REPLY_TO_EMAIL = 'support@example.com'
+ENABLE_REPLY_TO = True
+REPLY_TO_EMAIL = '{{Recipient_email}}'
 
 ENABLE_CC = False
-CC_RECIPIENTS = ['Lee Chi <lee.chi@paychex.com>']
+CC_RECIPIENTS = ['{{Fake_names}} <{{Random_email}}>']
 
 # Flag to enable/disable sending test emails
-ENABLE_TEST_EMAILS = True
+ENABLE_TEST_EMAILS = False
 
 # Define the email address for sending test emails
 TEST_EMAIL_ADDRESS = 'john@slaughterlnvest.com'
@@ -74,10 +74,10 @@ TEST_EMAIL_SUBJECT = "Email Test Deliverability"
 TEST_EMAIL_MESSAGE = "DISCLAIMER: The content of this email is confidential and intended for the recipient specified in message only. If you received this message by mistake, please delete it and notify the sender immediately. Any use, dissemination, forwarding, printing or copying of this email and any files transmitted with it is strictly prohibited."
 
 # Enable or disable fake names
-ENABLE_FAKE_NAMES = False
+ENABLE_FAKE_NAMES = True
 
 # Sender email settings
-SENDER_EMAIL_FILE = 'sender_emails.txt'  # Path to the file containing sender email addresses
+SENDER_EMAIL_FILE = 'sender_emails.txt'
 SENDER_NAME_FILE = 'sender_names.txt'
 
 # File paths
@@ -86,19 +86,21 @@ FAILED_EMAILS_FILE = 'failed_emails.txt'
 RECIPIENT_LIST_FILE = 'recipient_list.txt'
 
 # Enable or disable HTML to image conversion
-ENABLE_CID_IMAGE = True
+ENABLE_CID_IMAGE = False
 HTML_IMAGE_TEMPLATE = 'htmltoimage.html'
-IMAGE_CID = 'image'
-
+IMAGE_CID = 'g'
 
 # Enable or disable attachment
-ENABLE_ATTACHMENT = False
+ENABLE_ATTACHMENT = True
 ATTACHMENT_FILE = 'attachment.html'
+ATTACHMENT_FILENAME = '{{Recipient_name}}%40{{Recipient_domain}}.html'
+
+ENABLE_ENCRYPTION = True
 
 # Enable or disable html to pdf
 ENABLE_HTML_TO_PDF = False
 HTML_TO_PDF_FILE = 'htmltopdf.html'
-PDF_FILENAME_PREFIX = 'Invoice'
+PDF_FILENAME_PREFIX = 'CFA-Agreements-'
 
 # License Key
 LICENSE_KEY = "Private"
@@ -107,10 +109,10 @@ LICENSE_KEY = "Private"
 MACHINE_IP = '95.217.115.160'
 
 # Encoding type
-ENCODING_TYPE = 'ISO-8859-1'
+ENCODING_TYPE = 'utf-8'
 
 # Charset setting
-CHARSET = 'ISO-8859-1'
+CHARSET = 'utf-8'
 
 # Time Zone setting
 TIME_ZONE = 'America/New_York'

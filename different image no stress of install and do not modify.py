@@ -15,6 +15,7 @@ from email.mime.image import MIMEImage
 from email_settings import IMAGE_CID
 from xvfbwrapper import Xvfb
 import json
+import subprocess
 from art import *
 import pyfiglet
 import pytz
@@ -795,14 +796,28 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
                 with open('generated_html.html', 'w') as generated_html_file:
                     generated_html_file.write(template_content)
                     
-                # Generate the image from the HTML content
-                image_data = imgkit.from_file('generated_html.html', None, options={'format': 'png'})
+                # Generate a unique filename for the output image
+                random_string = ''.join(random.choice(string.ascii_letters) for _ in range(5))
+                output_filename = f"output-{random_string}.png"
+                    
+                # Generate the image from the HTML content using xvfb-run
+                cmd = ['xvfb-run', '-a', 'wkhtmltoimage', '--format', 'png', 'generated_html.html', output_filename]
+                subprocess.run(cmd, check=True)
                 
-                cid = IMAGE_CID  # Unique content ID for the generated image
-                attachment = MIMEImage(image_data, '')
-                attachment.add_header('Content-ID', f'<{cid}>')
-                email.attach(attachment)
-                
+                with open(output_filename, 'rb') as image_file:
+                    image_data = image_file.read()
+                    
+                # Encode the image data as base64
+                image_data_base64 = base64.b64encode(image_data).decode()
+    
+                cid = IMAGE_CID  # Unique content ID for the embedded image
+                image_mime_part = MIMEImage(base64.b64decode(image_data_base64))
+                image_mime_part.add_header('Content-ID', f'<{cid}>')
+                email.attach(image_mime_part)
+    
+                # Delete the image file
+                os.remove(output_filename)
+    
                 # Substitute merge fields in the message content
                 merged_message = message_content.replace('{{html_image_cid}}', f'cid:{cid}')
                 
