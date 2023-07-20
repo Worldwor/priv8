@@ -39,8 +39,8 @@ pyenv activate myenv
 sudo apt-get install libpango1.0-0     pango error incase
 sudo apt-get install wkhtmltopdf
 
-sudo apt-get update
-sudo apt-get install wkhtmltopdf
+sudo apt-get install python3-dev    pillow problem solving
+pip install Pillow
 
 
 apt install wkhtmltopdf
@@ -48,8 +48,6 @@ apt install wkhtmltopdf
 pip install pyarmor
 pyarmor-7 obfuscate --output encrypted main.py
 pyarmor obfuscate --output encrypted main.py
-~/.local/bin/pyarmor gen --output encrypted main.py
-
 
 lsof -i
 lsof -i :5001
@@ -80,6 +78,7 @@ Merge Fields:
 {{Fake_names}}: A random first and lastname
 {{Number10}}: A random 10 Number
 {{Fake_company}}: A Fake company names
+{{Fake_Company_email}}
 {{CHARSET}}:  A CHARSET
 {{Encoded_link}}: A link with a random number, random string, and recipient's base64-encoded email.
 Functions:

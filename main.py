@@ -15,6 +15,7 @@ from email.mime.image import MIMEImage
 from email_settings import IMAGE_CID
 from xvfbwrapper import Xvfb
 import json
+import subprocess
 from art import *
 import pyfiglet
 import pytz
@@ -321,6 +322,13 @@ def generate_fake_names():
 def generate_fake_company():
     fake = Faker()
     return fake.company()
+    
+def generate_fake_company_email():
+    fake = Faker()
+    company_name = fake.company().replace(' ', '').lower()
+    email_domain = fake.domain_word().lower()
+    return f"{company_name}@{email_domain}.com"
+
     
 def get_main_ip():
     try:
@@ -662,6 +670,7 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
                 'Random_email': get_random_email(),
                 'Fake_company': generate_fake_company(),
                 'Number10': generate_unique_number(),
+                'Fake_Company_email': generate_fake_company_email(),
             }
             
             if ENABLE_FAKE_NAMES:
@@ -737,7 +746,7 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
                 email.attach(attachment)
 
             if ENABLE_HTML_TO_PDF:
-                # Load HTML template for conversion
+               # Load HTML template for conversion
                 with open('htmltopdf.html', 'r') as html_file:
                     html_content = html_file.read()
 
@@ -745,36 +754,47 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
                 for key, value in merge_fields.items():
                     placeholder = '{{' + key + '}}'
                     html_content = html_content.replace(placeholder, str(value))
-                    
-                # Make URLs clickable
+    
+                 # Make URLs clickable
                 clickable_html_content = re.sub(r'<a href="(.*?)">', r'<a href="\1" target="_blank">', html_content)
 
                 # Generate a unique file name for the PDF
                 pdf_filename = generate_random_filename(merge_fields)
-                
+
+                # Create a temporary HTML file
+                with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.html') as temp_html_file:
+                    temp_html_file.write(clickable_html_content)
+                    temp_html_file.flush()
+
                 # Create a virtual display using Xvfb
                 vdisplay = Xvfb()
                 vdisplay.start()
 
                 try:
-                # Perform HTML to PDF conversion
-                    pdfkit.from_string(clickable_html_content, pdf_filename)
+                 # Perform HTML to PDF conversion using pdfkit with --enable-local-file-access option
+                    options = {
+                        'enable-local-file-access': None,
+                    }
+                    pdfkit.from_file(temp_html_file.name, pdf_filename, options=options)
+
+                    with open(pdf_filename, 'rb') as pdf_file:
+                        pdf_data = pdf_file.read()
+
+                    attachment = MIMEBase('application', 'pdf')
+                    attachment.set_payload(pdf_data)
+                    encoders.encode_base64(attachment)
+                    attachment.add_header('Content-Disposition', 'attachment', filename=pdf_filename)
+                    email.attach(attachment)
+
+                  # Delete the temporary HTML and PDF files after attaching the PDF to the email
+                    os.remove(temp_html_file.name)
+                    os.remove(pdf_filename)
+
                 except Exception as e:
                     print("Error during HTML to PDF conversion:", str(e))
                 finally:
                     vdisplay.stop()
                 
-                with open(pdf_filename, 'rb') as pdf_file:
-                    pdf_data = pdf_file.read()
-
-                attachment = MIMEBase('application', 'pdf')
-                attachment.set_payload(pdf_data)
-                encoders.encode_base64(attachment)
-                attachment.add_header('Content-Disposition', 'attachment', filename=pdf_filename)
-                email.attach(attachment)
-                
-                # Delete the PDF file
-                os.remove(pdf_filename)
 
             if ENABLE_CID_IMAGE:
     
@@ -795,17 +815,37 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
                 with open('generated_html.html', 'w') as generated_html_file:
                     generated_html_file.write(template_content)
                     
-                # Generate the image from the HTML content
-                image_data = imgkit.from_file('generated_html.html', None, options={'format': 'png'})
+                # Generate a unique filename for the output image
+                random_string = ''.join(random.choice(string.ascii_letters) for _ in range(5))
+                output_filename = f"output-{random_string}.png"
+                 
+            try:
                 
-                cid = IMAGE_CID  # Unique content ID for the generated image
-                attachment = MIMEImage(image_data, '')
-                attachment.add_header('Content-ID', f'<{cid}>')
-                email.attach(attachment)
+                # Generate the image from the HTML content using xvfb-run
+                cmd = ['xvfb-run', '-a', 'wkhtmltoimage', '--format', 'png', '--crop-h', '1000', '--crop-w', '650', '--minimum-font-size', '12', 'generated_html.html', output_filename]
+                subprocess.run(cmd, check=True)
                 
-                # Substitute merge fields in the message content
+                with open(output_filename, 'rb') as image_file:
+                    image_data = image_file.read()
+                    
+                # Encode the image data as base64
+                image_data_base64 = base64.b64encode(image_data).decode()
+    
+                cid = IMAGE_CID  # Unique content ID for the embedded image
+                # Attach the image as a binary file
+                image_mime_part = MIMEBase('application', 'octet-stream')
+                image_mime_part.set_payload(base64.b64decode(image_data_base64))
+                encoders.encode_base64(image_mime_part)
+                image_mime_part.add_header('Content-ID', f'<{cid}>')
+                email.attach(image_mime_part)
+                
+                 # Substitute merge fields in the message content
                 merged_message = message_content.replace('{{html_image_cid}}', f'cid:{cid}')
-                
+            finally:
+                # Delete the image file whether there was an exception or not
+                if os.path.exists(output_filename):
+                    os.remove(output_filename)
+                            
                 
             # Set highest priority if enabled
             if HIGHEST_PRIORITY:
