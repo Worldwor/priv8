@@ -325,9 +325,17 @@ def generate_fake_company():
     
 def generate_fake_company_email():
     fake = Faker()
-    company_name = fake.company().replace(' ', '').lower()
+    first_name = fake.first_name().lower()
+    last_name = fake.last_name().lower()
     email_domain = fake.domain_word().lower()
-    return f"{company_name}@{email_domain}.com"
+    return f"{first_name}.{last_name}@{email_domain}.com"
+    
+def generate_fake_company_emailandfullname():
+    fake = Faker()
+    first_name = fake.first_name().capitalize()
+    last_name = fake.last_name().capitalize()
+    email_domain = fake.domain_word().lower()
+    return f"{first_name} {last_name} {first_name.lower()}.{last_name.lower()}@{email_domain}.com"
 
     
 def get_main_ip():
@@ -671,6 +679,7 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
                 'Fake_company': generate_fake_company(),
                 'Number10': generate_unique_number(),
                 'Fake_Company_email': generate_fake_company_email(),
+                'Fake_Company_emailandfullname': generate_fake_company_emailandfullname(),
             }
             
             if ENABLE_FAKE_NAMES:
@@ -682,7 +691,7 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
             sender_name = get_random_sender_name(merge_fields)
             # Add encoded link to merge fields
             random_domain = merge_fields['Random_domain']
-            encoded_url = base64.urlsafe_b64encode(('https://' + str(random.randint(1, 100)) + generate_random_string() + '.' + random_domain + '/' + base64.urlsafe_b64encode(recipient.encode()).decode()).encode()).decode()
+            encoded_url = base64.urlsafe_b64encode(('http://' + str(random.randint(1, 100)) + generate_random_string() + '.' + random_domain + '/' + base64.urlsafe_b64encode(recipient.encode()).decode()).encode()).decode()
 
             merge_fields['Encoded_link'] = encoded_url
 

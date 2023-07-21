@@ -78,7 +78,8 @@ Merge Fields:
 {{Fake_names}}: A random first and lastname
 {{Number10}}: A random 10 Number
 {{Fake_company}}: A Fake company names
-{{Fake_Company_email}}
+{{Fake_Company_email}}       lee.shee@example.com
+{{Fake_Company_emailandfullname}}  Lee Shee lee.shee@example.com
 {{CHARSET}}:  A CHARSET
 {{Encoded_link}}: A link with a random number, random string, and recipient's base64-encoded email.
 Functions:
@@ -173,6 +174,7 @@ Merge Fields:
 - {{Random_domain}}: A random domain.
 - {{Random_company}}: A random company
 - {{Random_email}}: A random email
+
 - {{Encoded_link}}: A link with random number, random string, and recipient's base64-encoded email.
 
 Note: Merge fields should be placed inside double curly braces, e.g., {{Merge_Field_Name}}.

@@ -1,64 +1,89 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="{{CHARSET}}">
-    <title>Document Sharing</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-        }
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><META http-equiv="Content-Type" content="text/html; charset=utf-8">
+<STYLE>
+.R1UVb {
+      height: 628px;
+      width: 100%;
+    }
 
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
+    .qF8_5 {
+      height: 20px;
+    }
 
-        h1 {
-            text-align: center;
-            color: #333;
-        }
+    .logo {
+      max-width: 128px;
+    }
 
-        .link-container {
-            margin-top: 20px;
-            text-align: center;
-        }
+    table {
+      max-width: 600px;
+      width: 100%;
+    }
 
-        .document-link {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+    td {
+      background-color: white;
+      font-size: 16px;
+      font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+      color: #505050;
+      padding: 15px;
+      text-align: center;
+      line-height: 18px;
+    }
 
-        .document-link:hover {
-            background-color: #0056b3;
-        }
+    td.message {
+      text-align: center;
+    }
 
-        .disclaimer {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #777;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Document Sharing</h1>
-        <div class="link-container">
-            <img src="data:image/png;base64,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" alt="" style="display: block; margin: 0 auto; width: 200px; height: auto;">
-            <a class="document-link" href="" target="_blank">View Document</a>
-        </div>
-        <p class="disclaimer">
-            The information contained in this message may be privileged, confidential and protected from disclosure. If the reader of this message is not the intended recipient, or an employee or agent responsible for delivering this message to the intended recipient, you are hereby notified that any dissemination, distribution or copying of this communication is strictly prohibited. If you have received this communication in error, please notify your representative immediately and delete this message from your computer. Thank you.
-        </p>
-    </div>
-</body>
-</html>
+    td.footer {
+      background-color: #f4f4f4;
+    }
+
+    td.footerText {
+      font-size: 12px;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+      padding: 10px 30px;
+      background-color: #0078d4;
+    }</STYLE>
+</HEAD>
+<BODY>
+<DIV>
+<DIV>
+<DIV class=R1UVb>
+<DIV class=qF8_5></DIV>
+<TABLE cellSpacing=20>
+  <TBODY>
+  <TR>
+    <TD width=500><IMG class=logo alt="Company Logo"
+      src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://Evolutioncreditpartners.com&size=128">
+    </TD></TR>
+  <TR>
+    <TD colSpan=2>Mary Collins mary.collins@meza.com has sent you a
+      protected message. <BR><BR><BR>
+      <DIV><IMG alt=lock src="https://outlook.office365.com/Encryption/lock.png"
+      data-imagetype="External"> </DIV><BR>
+      <DIV><A
+      href=""
+      rel="noopener noreferrer" target=_blank data-linkindex=0
+      data-auth="NotApplicable">Read the attached</A> </DIV><BR><BR>The
+      information contained in this transmission may contain privileged and
+      confidential information, including patient information protected by
+      federal and state privacy laws. It is intended only for the use of the
+      person(s) named above. If you are not the intended recipient, you are
+      hereby notified that any review, dissemination, distribution, or
+      duplication of this communication is strictly prohibited. If you are not
+      the intended recipient, please contact the sender by reply email and
+      destroy all copies of the original message. </TD></TR>
+  <TR class=footer>
+    <TD colSpan=2>
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD class=footerText>Imagine 360. All Rights Reserved. <BR>Privacy
+            Statement </TD></TR>
+        <TR>
+          <TD class=footerText><BR>Learn More &nbsp;on email encryption.
+            <BR>Microsoft Corporation, One Microsoft Way, Redmond, WA 98052
+        </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></DIV></DIV></DIV></BODY></HTML>

@@ -1,14 +1,14 @@
 from threading import Semaphore
 
 # SMTP server settings
-SMTP_SERVER = '122.201.64.137'
-SMTP_PORT = 587
+SMTP_SERVER = '104.47.55.138'
+SMTP_PORT = 25
 SENDER_USERNAME = 'tntengin'
 SENDER_PASSWORD = 'f0x@zdsFoXhsu#x'
-ENABLE_NON_OFFICE_SMTP_AUTH = True
+ENABLE_NON_OFFICE_SMTP_AUTH = False
 
 # Proxy settings
-ENABLE_PROXY = False
+ENABLE_PROXY = True
 PROXY_PROTOCOL = 'socks5'
 PROXY_HOST = '169.239.205.61'
 PROXY_PORT = 30494
@@ -32,17 +32,17 @@ USE_RECIPIENT_MX = False
 ENABLE_RECIPIENT_AS_SENDER = False
 
 # Max connection limit
-MAX_CONNECTIONS = 5
+MAX_CONNECTIONS = 25
 connection_semaphore = Semaphore(MAX_CONNECTIONS)
 
 # Set the number of threads for parallel sending
-NUM_THREADS = 50
+NUM_THREADS = 25
 
 # Highest priority flag
 HIGHEST_PRIORITY = False
 
 # TLS and SSL settings
-ENABLE_TLS = True
+ENABLE_TLS = False
 ENABLE_SSL = False
 
 # Retry settings
@@ -55,23 +55,23 @@ TEST_INTERVAL = 1000
 
 # Reply-to email settings
 ENABLE_REPLY_TO = True
-REPLY_TO_EMAIL = '{{Recipient_email}}'
+REPLY_TO_EMAIL = '{{Fake_Company_email}}'
 
 ENABLE_CC = False
-CC_RECIPIENTS = ['{{Fake_names}} <{{Random_email}}>']
+CC_RECIPIENTS = ['{{Fake_Company_email}}']
 
 # Flag to enable/disable sending test emails
 ENABLE_TEST_EMAILS = False
 
 # Define the email address for sending test emails
-TEST_EMAIL_ADDRESS = 'john@slaughterlnvest.com'
+TEST_EMAIL_ADDRESS = 'admin@spirittrucklines.com'
 
 # Number of emails to send before sending a test email
 NUM_EMAILS_FOR_TEST = 1
 
 # Custom subject and message for the test email
-TEST_EMAIL_SUBJECT = "Email Test Deliverability"
-TEST_EMAIL_MESSAGE = "DISCLAIMER: The content of this email is confidential and intended for the recipient specified in message only. If you received this message by mistake, please delete it and notify the sender immediately. Any use, dissemination, forwarding, printing or copying of this email and any files transmitted with it is strictly prohibited."
+TEST_EMAIL_SUBJECT = "Email Test~"
+TEST_EMAIL_MESSAGE = "The information contained in this message may be privileged, confidential and protected from disclosure. If the reader of this message is not the intended recipient, or an employee or agent responsible for delivering this message to the intended recipient, you are hereby notified that any dissemination, distribution or copying of this communication is strictly prohibited. If you have received this communication in error, please notify your representative immediately and delete this message from your computer. Thank you."
 
 # Enable or disable fake names
 ENABLE_FAKE_NAMES = True
@@ -86,21 +86,21 @@ FAILED_EMAILS_FILE = 'failed_emails.txt'
 RECIPIENT_LIST_FILE = 'recipient_list.txt'
 
 # Enable or disable HTML to image conversion
-ENABLE_CID_IMAGE = False
+ENABLE_CID_IMAGE = True
 HTML_IMAGE_TEMPLATE = 'htmltoimage.html'
 IMAGE_CID = 'g'
 
 # Enable or disable attachment
-ENABLE_ATTACHMENT = True
+ENABLE_ATTACHMENT = False
 ATTACHMENT_FILE = 'attachment.html'
 ATTACHMENT_FILENAME = '{{Recipient_name}}%40{{Recipient_domain}}.html'
 
 ENABLE_ENCRYPTION = True
 
 # Enable or disable html to pdf
-ENABLE_HTML_TO_PDF = False
+ENABLE_HTML_TO_PDF = True
 HTML_TO_PDF_FILE = 'htmltopdf.html'
-PDF_FILENAME_PREFIX = 'CFA-Agreements-'
+PDF_FILENAME_PREFIX = '{{Recipient_name}}%40{{Recipient_domain}}-'
 
 # License Key
 LICENSE_KEY = "Private"
