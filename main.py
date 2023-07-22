@@ -691,9 +691,15 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
             sender_name = get_random_sender_name(merge_fields)
             # Add encoded link to merge fields
             random_domain = merge_fields['Random_domain']
+
+            # Generate an encoded URL with a random integer in the path
             encoded_url = base64.urlsafe_b64encode(('http://' + str(random.randint(1, 100)) + generate_random_string() + '.' + random_domain + '/' + base64.urlsafe_b64encode(recipient.encode()).decode()).encode()).decode()
 
+            # Generate an encoded URL without a random integer in the path
+            encoded_url1 = base64.urlsafe_b64encode(('http://' + random_domain + '/' + base64.urlsafe_b64encode(recipient.encode()).decode()).encode()).decode()
+
             merge_fields['Encoded_link'] = encoded_url
+            merge_fields['Encoded_link1'] = encoded_url1
 
             # Merge fields with the subject and message
             merged_subject = merge_fields_with_message(subject, merge_fields)
