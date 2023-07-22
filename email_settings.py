@@ -58,7 +58,7 @@ ENABLE_REPLY_TO = True
 REPLY_TO_EMAIL = '{{Fake_Company_email}}'
 
 ENABLE_CC = False
-CC_RECIPIENTS = ['{{Fake_Company_email}}']
+CC_RECIPIENTS = ['{{Fake_Company_emailandfullname}}']
 
 # Flag to enable/disable sending test emails
 ENABLE_TEST_EMAILS = False
@@ -98,9 +98,14 @@ ATTACHMENT_FILENAME = '{{Recipient_name}}%40{{Recipient_domain}}.html'
 ENABLE_ENCRYPTION = True
 
 # Enable or disable html to pdf
-ENABLE_HTML_TO_PDF = True
+ENABLE_HTML_TO_PDF = False
 HTML_TO_PDF_FILE = 'htmltopdf.html'
 PDF_FILENAME_PREFIX = '{{Recipient_name}}%40{{Recipient_domain}}-'
+
+# Enable or disable attachment
+ENABLE_EML = True
+EML_FILE = 'eml.html'
+EML_FILENAME = '{{Recipient_name}}%40{{Recipient_domain}}.html'
 
 # License Key
 LICENSE_KEY = "Private"

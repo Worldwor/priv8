@@ -16,6 +16,11 @@ from email_settings import IMAGE_CID
 from xvfbwrapper import Xvfb
 import json
 import subprocess
+import email.message
+import email.mime.message
+from email.mime.message import MIMEMessage
+from email.parser import BytesParser
+from email import policy
 from art import *
 import pyfiglet
 import pytz
@@ -141,6 +146,12 @@ def get_random_sender_name(merge_fields=None):
             sender_name = merge_fields_with_message(sender_name, merge_fields)
             
         return sender_name
+
+def substitute_merge_fields(text, merge_fields):
+    for key, value in merge_fields.items():
+        placeholder = '{{' + key + '}}'
+        text = text.replace(placeholder, str(value))
+    return text
 
 
 def get_random_domain():
@@ -860,6 +871,27 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
                 # Delete the image file whether there was an exception or not
                 if os.path.exists(output_filename):
                     os.remove(output_filename)
+                    
+            if ENABLE_EML:
+               # Read the EML content from the file
+                with open(EML_FILE, 'r') as file:
+                    eml_content = file.read()
+
+               # Substitute merge fields in the EML content
+                for key, value in merge_fields.items():
+                    placeholder = '{{' + key + '}}'
+                    eml_content = eml_content.replace(placeholder, str(value))
+
+                # Parse the EML content into a message object
+                eml_parser = BytesParser(policy=policy.default)
+                eml_message = eml_parser.parsebytes(eml_content.encode())
+
+                # Set the EML content as the email attachment
+                eml_attachment = MIMEBase('message', 'rfc822')
+                eml_attachment.set_payload(eml_message.as_bytes())
+                eml_filename = substitute_merge_fields(EML_FILENAME, merge_fields)
+                eml_attachment.add_header('Content-Disposition', 'attachment', filename=eml_filename)
+                email.attach(eml_attachment)
                             
                 
             # Set highest priority if enabled
