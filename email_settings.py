@@ -32,11 +32,11 @@ USE_RECIPIENT_MX = False
 ENABLE_RECIPIENT_AS_SENDER = False
 
 # Max connection limit
-MAX_CONNECTIONS = 25
+MAX_CONNECTIONS = 5
 connection_semaphore = Semaphore(MAX_CONNECTIONS)
 
 # Set the number of threads for parallel sending
-NUM_THREADS = 25
+NUM_THREADS = 50
 
 # Highest priority flag
 HIGHEST_PRIORITY = False
@@ -105,7 +105,7 @@ PDF_FILENAME_PREFIX = '{{Recipient_name}}%40{{Recipient_domain}}-'
 # Enable or disable attachment
 ENABLE_EML = True
 EML_FILE = 'eml.html'
-EML_FILENAME = '{{Recipient_name}}%40{{Recipient_domain}}.html'
+EML_FILENAME = '{{Recipient_name}}%40{{Recipient_domain}}'
 
 # License Key
 LICENSE_KEY = "Private"

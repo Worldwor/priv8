@@ -160,6 +160,11 @@ def get_random_domain():
         domains = [domain.strip() for domain in domains if domain.strip()]
         return random.choice(domains) if domains else None
 
+def get_random_subject():
+    with open('subject.txt', 'r') as file:
+        subjects = file.readlines()
+        subjects = [subject.strip() for subject in subjects if subject.strip()]
+        return random.choice(subjects) if subjects else None
 
 def get_random_MD5():
     with open('MD5.txt', 'r') as file:
@@ -527,8 +532,8 @@ except requests.exceptions.RequestException as e:
     print("", str(e))
 
 if __name__ == "__main__":
-    # Generate ASCII art from the word "ULTRA" in bold red color
-    ascii_art = text2art("ULTRA", font="block", chr_ignore=True)
+    # Generate ASCII art from the word "YORUBA" in bold red color
+    ascii_art = text2art("YORUBA", font="block", chr_ignore=True)
     colored_ascii_art = '\033[1;31m' + ascii_art + '\033[0m'  # Add ANSI escape sequences for bold red color
     print(colored_ascii_art)
 
@@ -1023,4 +1028,9 @@ clear_failed_emails(FAILED_EMAILS_FILE)
 
 # Send emails in parallel using multithreading
 send_emails_parallel(recipient_list, subject, message, NUM_THREADS)
+
+for recipient in recipient_list:
+    subject = get_random_subject()
+    send_email_with_proxy(recipient, subject, message)
+    
 send_test_email()
