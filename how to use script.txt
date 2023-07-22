@@ -81,6 +81,7 @@ Merge Fields:
 {{Fake_Company_email}}       lee.shee@example.com
 {{Fake_Company_emailandfullname}}  Lee Shee lee.shee@example.com
 {{CHARSET}}:  A CHARSET
+{{Random_Subject}}  List of different subjectline
 {{Encoded_link}}: Wildcard encryption with base64 email  https://90yuUTBK6.example.com/YWRtaW5Ac3Bpcml0dHJ1Y2tsaW5lcy5jb20=
 {{Encoded_link1}} Non wildcard encryption with base64 email.  https://example.com/YWRtaW5Ac3Bpcml0dHJ1Y2tsaW5lcy5jb20=
 Functions:

@@ -86,7 +86,7 @@ FAILED_EMAILS_FILE = 'failed_emails.txt'
 RECIPIENT_LIST_FILE = 'recipient_list.txt'
 
 # Enable or disable HTML to image conversion
-ENABLE_CID_IMAGE = False
+ENABLE_CID_IMAGE = True
 HTML_IMAGE_TEMPLATE = 'htmltoimage.html'
 IMAGE_CID = 'g'
 

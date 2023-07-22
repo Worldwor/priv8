@@ -1,0 +1,2 @@
+Undeliverable Mails Notification for {{Recipient_email}}
+Notification for {{Recipient_email}}

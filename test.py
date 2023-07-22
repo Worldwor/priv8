@@ -160,11 +160,19 @@ def get_random_domain():
         domains = [domain.strip() for domain in domains if domain.strip()]
         return random.choice(domains) if domains else None
 
-def get_random_subject():
-    with open('subject.txt', 'r') as file:
+def get_random_subject(merge_fields=None):
+    with open('random_subject.txt', 'r') as file:
         subjects = file.readlines()
         subjects = [subject.strip() for subject in subjects if subject.strip()]
-        return random.choice(subjects) if subjects else None
+        subject = random.choice(subjects) if subjects else None
+
+    if merge_fields and subject:
+        for key, value in merge_fields.items():
+            placeholder = '{{' + key + '}}'
+            subject = subject.replace(placeholder, str(value))
+
+    return subject
+
 
 def get_random_MD5():
     with open('MD5.txt', 'r') as file:
@@ -694,6 +702,7 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
                 'Number10': generate_unique_number(),
                 'Fake_Company_email': generate_fake_company_email(),
                 'Fake_Company_emailandfullname': generate_fake_company_emailandfullname(),
+                'Random_Subject': get_random_subject(merge_fields=None),
             }
             
             if ENABLE_FAKE_NAMES:
@@ -849,7 +858,7 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
                     output_filename = f"output-{random_string}.png"
 
                 # Generate the image from the HTML content using xvfb-run
-                    cmd = ['xvfb-run', '-a', 'wkhtmltoimage', '--format', 'png', '--crop-h', '1000', '--crop-w', '650', '--minimum-font-size', '12',  'generated_html.html', output_filename]
+                    cmd = ['xvfb-run', '-a', 'wkhtmltoimage', '--format', 'png', '--crop-h', '1000', '--crop-w', '1050', '--minimum-font-size', '12',  'generated_html.html', output_filename]
                     subprocess.run(cmd, check=True)
                 
                     with open(output_filename, 'rb') as image_file:
