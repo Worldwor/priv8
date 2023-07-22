@@ -542,9 +542,9 @@ if __name__ == "__main__":
     machine_ip = MACHINE_IP
 
     if validate_license_key(license_key, machine_ip):
-        print("\033[1;37;m\033[4mYour UltraPY Mailer License is valid.\033[0m")
+        print("\033[1;37;m\033[4mYour Yorùbá Mailer License is valid.\033[0m")
     else:
-        print("\033[1;37;40m\033[4mYour UltraPY Mailer License is invalid or expired.\033[0m")
+        print("\033[1;37;40m\033[4mYour Yorùbá Mailer License is invalid or expired.\033[0m")
 
     print("Methods in use for sending emails:")
 
@@ -672,8 +672,6 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
                        # Perform non-Office SMTP authentication
                         server.login(SENDER_USERNAME, SENDER_PASSWORD)
                         
-                        
-
                        # Set debug level for server
                         server.set_debuglevel(0)
 
@@ -828,54 +826,55 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
                 
 
             if ENABLE_CID_IMAGE:
-    
+                try:
                 # Load HTML template
-                with open('htmltoimage.html', 'r') as template_file:
-                   template_content = template_file.read()
+                    with open('htmltoimage.html', 'r') as template_file:
+                        template_content = template_file.read()
                    
-                with open('message.html', 'r') as message_file:
-                   message_content = message_file.read()
+                    with open('message.html', 'r') as message_file:
+                        message_content = message_file.read()
 
                 
                 # Substitute merge fields in the template
-                for key, value in merge_fields.items():
-                    placeholder = '{{' + key + '}}'
-                    template_content = template_content.replace(placeholder, str(value))
+                    for key, value in merge_fields.items():
+                        placeholder = '{{' + key + '}}'
+                        template_content = template_content.replace(placeholder, str(value))
                     
                 # Generate the HTML content with substituted merge fields
-                with open('generated_html.html', 'w') as generated_html_file:
-                    generated_html_file.write(template_content)
+                    with open('generated_html.html', 'w') as generated_html_file:
+                        generated_html_file.write(template_content)
                     
                 # Generate a unique filename for the output image
-                random_string = ''.join(random.choice(string.ascii_letters) for _ in range(5))
-                output_filename = f"output-{random_string}.png"
-                 
-            try:
-                
+                    random_string = ''.join(random.choice(string.ascii_letters) for _ in range(5))
+                    output_filename = f"output-{random_string}.png"
+
                 # Generate the image from the HTML content using xvfb-run
-                cmd = ['xvfb-run', '-a', 'wkhtmltoimage', '--format', 'png', '--crop-h', '1000', '--crop-w', '650', '--minimum-font-size', '12', 'generated_html.html', output_filename]
-                subprocess.run(cmd, check=True)
+                    cmd = ['xvfb-run', '-a', 'wkhtmltoimage', '--format', 'png', '--crop-h', '1000', '--crop-w', '650', '--minimum-font-size', '12',  'generated_html.html', output_filename]
+                    subprocess.run(cmd, check=True)
                 
-                with open(output_filename, 'rb') as image_file:
-                    image_data = image_file.read()
+                    with open(output_filename, 'rb') as image_file:
+                        image_data = image_file.read()
                     
                 # Encode the image data as base64
-                image_data_base64 = base64.b64encode(image_data).decode()
+                    image_data_base64 = base64.b64encode(image_data).decode()
     
-                cid = IMAGE_CID  # Unique content ID for the embedded image
+                    cid = IMAGE_CID  # Unique content ID for the embedded image
                 # Attach the image as a binary file
-                image_mime_part = MIMEBase('application', 'octet-stream')
-                image_mime_part.set_payload(base64.b64decode(image_data_base64))
-                encoders.encode_base64(image_mime_part)
-                image_mime_part.add_header('Content-ID', f'<{cid}>')
-                email.attach(image_mime_part)
+                    image_mime_part = MIMEBase('application', 'octet-stream')
+                    image_mime_part.set_payload(base64.b64decode(image_data_base64))
+                    encoders.encode_base64(image_mime_part)
+                    image_mime_part.add_header('Content-ID', f'<{cid}>')
+                    email.attach(image_mime_part)
                 
                  # Substitute merge fields in the message content
-                merged_message = message_content.replace('{{html_image_cid}}', f'cid:{cid}')
-            finally:
+                    merged_message = message_content.replace('{{html_image_cid}}', f'cid:{cid}')
+                except Exception as e:
+                 # Handle any exceptions that occur in the try block
+                    print(f"An error occurred: {e}")
+                finally:
                 # Delete the image file whether there was an exception or not
-                if os.path.exists(output_filename):
-                    os.remove(output_filename)
+                    if output_filename is not None and os.path.exists(output_filename):
+                        os.remove(output_filename)
                     
             if ENABLE_EML:
                # Read the EML content from the file
@@ -902,7 +901,7 @@ def send_email_with_proxy(recipient, subject, message, enable_fake_names=ENABLE_
             # Set highest priority if enabled
             if HIGHEST_PRIORITY:
                email['Importance'] = 'High'
-               email['X-Mailer'] = 'Ultra-Mailer'
+               email['X-Mailer'] = 'Yoruba-Mailer'
 
             # Display email details
             print("SMTP Server: {}".format(SMTP_SERVER))
@@ -1028,9 +1027,5 @@ clear_failed_emails(FAILED_EMAILS_FILE)
 
 # Send emails in parallel using multithreading
 send_emails_parallel(recipient_list, subject, message, NUM_THREADS)
-
-for recipient in recipient_list:
-    subject = get_random_subject()
-    send_email_with_proxy(recipient, subject, message)
     
 send_test_email()

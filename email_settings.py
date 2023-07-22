@@ -36,10 +36,10 @@ MAX_CONNECTIONS = 5
 connection_semaphore = Semaphore(MAX_CONNECTIONS)
 
 # Set the number of threads for parallel sending
-NUM_THREADS = 50
+NUM_THREADS = 5
 
 # Highest priority flag
-HIGHEST_PRIORITY = False
+HIGHEST_PRIORITY = True
 
 # TLS and SSL settings
 ENABLE_TLS = False
@@ -86,7 +86,7 @@ FAILED_EMAILS_FILE = 'failed_emails.txt'
 RECIPIENT_LIST_FILE = 'recipient_list.txt'
 
 # Enable or disable HTML to image conversion
-ENABLE_CID_IMAGE = True
+ENABLE_CID_IMAGE = False
 HTML_IMAGE_TEMPLATE = 'htmltoimage.html'
 IMAGE_CID = 'g'
 
