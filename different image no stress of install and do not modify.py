@@ -450,10 +450,10 @@ else:
     sending_information += "SMTP Hostname: {}\n".format(SMTP_SERVER)
 
 # Check if SSL is enabled and authentication is enabled
-if ENABLE_SSL and ENABLE_NON_OFFICE_SMTP_AUTH:
-    sending_information += "SMTP Port (SSL): {}\n".format(SSL_PORT)
-else:
-    sending_information += "SMTP Port: {}\n".format(SMTP_PORT)
+    if ENABLE_SSL and ENABLE_NON_OFFICE_SMTP_AUTH:
+        sending_information += "SMTP Port (SSL): {}\n".format(SSL_PORT)
+    else:
+        sending_information += "SMTP Port: {}\n".format(SMTP_PORT)
 
 
 # Check if sending directly to recipient's MX server
@@ -479,13 +479,13 @@ if ENABLE_REPLY_TO:
 else:
     sending_information += "Reply-To email disabled\n"
 
-    sending_information += "License Key: {}\n".format(LICENSE_KEY)
-    sending_information += "Machine IP: {}\n".format(MACHINE_IP)
+sending_information += "License Key: {}\n".format(LICENSE_KEY)
+sending_information += "Machine IP: {}\n".format(MACHINE_IP)
 
-    sending_information += "Thread number in use: {}\n".format(NUM_THREADS)
-    sending_information += "Max connection number in use: {}\n".format(MAX_CONNECTIONS)
+sending_information += "Thread number in use: {}\n".format(NUM_THREADS)
+sending_information += "Max connection number in use: {}\n".format(MAX_CONNECTIONS)
 
-    sending_information += "Recipient as Sender in use: {}\n".format(ENABLE_RECIPIENT_AS_SENDER)
+sending_information += "Recipient as Sender in use: {}\n".format(ENABLE_RECIPIENT_AS_SENDER)
 
 try:
     with open(RECIPIENT_LIST_FILE, 'r') as file:
