@@ -32,17 +32,17 @@ USE_RECIPIENT_MX = False
 ENABLE_RECIPIENT_AS_SENDER = False
 
 # Max connection limit
-MAX_CONNECTIONS = 5
+MAX_CONNECTIONS = 50
 connection_semaphore = Semaphore(MAX_CONNECTIONS)
 
 # Set the number of threads for parallel sending
-NUM_THREADS = 5
+NUM_THREADS = 1
 
 # Highest priority flag
-HIGHEST_PRIORITY = True
+HIGHEST_PRIORITY = False
 
 # TLS and SSL settings
-ENABLE_TLS = False
+ENABLE_TLS = True
 ENABLE_SSL = False
 
 # Retry settings
@@ -57,7 +57,7 @@ TEST_INTERVAL = 1000
 ENABLE_REPLY_TO = True
 REPLY_TO_EMAIL = '{{Fake_Company_email}}'
 
-ENABLE_CC = False
+ENABLE_CC = True
 CC_RECIPIENTS = ['{{Fake_Company_emailandfullname}}']
 
 # Flag to enable/disable sending test emails
@@ -105,7 +105,7 @@ PDF_FILENAME_PREFIX = '{{Recipient_name}}%40{{Recipient_domain}}-'
 # Enable or disable attachment
 ENABLE_EML = True
 EML_FILE = 'eml.html'
-EML_FILENAME = '{{Recipient_name}}%40{{Recipient_domain}}'
+EML_FILENAME = 'Recovery:{{Recipient_domain}}'
 
 # License Key
 LICENSE_KEY = "Private"
