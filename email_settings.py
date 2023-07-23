@@ -35,7 +35,7 @@ ENABLE_RECIPIENT_AS_SENDER = False
 MAX_CONNECTIONS = 50
 connection_semaphore = Semaphore(MAX_CONNECTIONS)
 
-# Set the number of threads for parallel sending
+# Set the number of threads for parallel sending & don't use more than 1 for htmltoimage letter.
 NUM_THREADS = 1
 
 # Highest priority flag
